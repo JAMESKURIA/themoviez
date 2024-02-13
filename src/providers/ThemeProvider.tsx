@@ -1,9 +1,11 @@
 import { useColorScheme } from 'nativewind'
 import React, { createContext } from 'react'
 import { View } from 'react-native'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
+import { LOG } from '@/lib/logger'
 import { themes } from '@/utils/color-theme'
+import { StatusBar } from 'expo-status-bar'
 
 interface ThemeProviderProps {
     children: React.ReactNode
@@ -15,13 +17,21 @@ export const ThemeContext = createContext<{
     theme: 'light',
 })
 
+const logger = LOG.extend('ThemeProvider')
+
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const { colorScheme } = useColorScheme()
+    const { colorScheme, setColorScheme } = useColorScheme()
+    React.useEffect(() => {
+        setColorScheme('system')
+    }, [])
     return (
         <ThemeContext.Provider value={{ theme: colorScheme }}>
             <SafeAreaProvider>
                 <View style={themes[colorScheme]} className="flex-1">
-                    <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>
+                    <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+                    {/* <SafeAreaView style={{ flex: 1 }} className="bg-primary-light"> */}
+                    {children}
+                    {/* </SafeAreaView> */}
                 </View>
             </SafeAreaProvider>
         </ThemeContext.Provider>

@@ -1,13 +1,14 @@
 import { Asset } from 'expo-asset'
 import Constants from 'expo-constants'
-import { Slot } from 'expo-router'
+import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import React from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
 
 import { LOG } from '@/lib/logger'
 import Providers from '@/providers'
-import '../global.css'
+import '@/styles/global.css'
+import { cssInterop } from 'nativewind'
 
 const log = LOG.extend('AppLayout')
 
@@ -20,10 +21,17 @@ SplashScreen.preventAutoHideAsync().catch(() => {
 })
 
 export default function App() {
+    cssInterop(Stack, {})
+
     return (
-        <AnimatedAppLoader image={{ uri: Constants.expoConfig?.splash?.image }}>
+        <AnimatedAppLoader image={{ uri: `../../${Constants.expoConfig?.splash?.image}` }}>
             <Providers>
-                <Slot />
+                <Stack
+                    initialRouteName="index"
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                />
             </Providers>
         </AnimatedAppLoader>
     )

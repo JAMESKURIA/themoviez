@@ -1,0 +1,174 @@
+diff --git a/node_modules/react-native-paper/src/components/TextInput/TextInputFlat.tsx b/node_modules/react-native-paper/src/components/TextInput/TextInputFlat.tsx
+index c9dabcc..3d38218 100644
+--- a/node_modules/react-native-paper/src/components/TextInput/TextInputFlat.tsx
++++ b/node_modules/react-native-paper/src/components/TextInput/TextInputFlat.tsx
+@@ -1,43 +1,41 @@
+ import * as React from 'react';
+ import {
+-  I18nManager,
+-  Platform,
+-  StyleSheet,
+-  TextInput as NativeTextInput,
+-  TextStyle,
+-  View,
+-  Animated,
++    Animated,
++    I18nManager,
++    TextInput as NativeTextInput,
++    Platform,
++    StyleSheet,
++    TextStyle,
++    View,
+ } from 'react-native';
+ 
+ import { Underline } from './Addons/Underline';
+ import { AdornmentSide, AdornmentType, InputMode } from './Adornment/enums';
+ import TextInputAdornment, {
+-  TextInputAdornmentProps,
++    getAdornmentConfig,
++    getAdornmentStyleAdjustmentForNativeInput,
++    TextInputAdornmentProps,
+ } from './Adornment/TextInputAdornment';
+ import {
+-  getAdornmentConfig,
+-  getAdornmentStyleAdjustmentForNativeInput,
+-} from './Adornment/TextInputAdornment';
+-import {
+-  ADORNMENT_SIZE,
+-  LABEL_PADDING_TOP_DENSE,
+-  LABEL_WIGGLE_X_OFFSET,
+-  MAXIMIZED_LABEL_FONT_SIZE,
+-  MINIMIZED_LABEL_FONT_SIZE,
+-  MINIMIZED_LABEL_Y_OFFSET,
+-  MIN_DENSE_HEIGHT,
+-  MIN_DENSE_HEIGHT_WL,
++    ADORNMENT_SIZE,
++    LABEL_PADDING_TOP_DENSE,
++    LABEL_WIGGLE_X_OFFSET,
++    MAXIMIZED_LABEL_FONT_SIZE,
++    MIN_DENSE_HEIGHT,
++    MIN_DENSE_HEIGHT_WL,
++    MINIMIZED_LABEL_FONT_SIZE,
++    MINIMIZED_LABEL_Y_OFFSET,
+ } from './constants';
+ import {
+-  adjustPaddingFlat,
+-  calculateFlatAffixTopPosition,
+-  calculateFlatInputHorizontalPadding,
+-  calculateInputHeight,
+-  calculateLabelTopPosition,
+-  calculatePadding,
+-  getConstants,
+-  getFlatInputColors,
+-  Padding,
++    adjustPaddingFlat,
++    calculateFlatAffixTopPosition,
++    calculateFlatInputHorizontalPadding,
++    calculateInputHeight,
++    calculateLabelTopPosition,
++    calculatePadding,
++    getConstants,
++    getFlatInputColors,
++    Padding,
+ } from './helpers';
+ import InputLabel from './Label/InputLabel';
+ import type { ChildTextInputProps, RenderProps } from './types';
+@@ -418,7 +416,7 @@ const TextInputFlat = ({
+                 MIN_WIDTH
+               ),
+             },
+-            Platform.OS === 'web' && { outline: 'none' },
++            Platform.OS === 'web' ? { outline: 'none' } : undefined,
+             adornmentStyleAdjustmentForNativeInput,
+             contentStyle,
+           ],
+diff --git a/node_modules/react-native-paper/src/components/TextInput/TextInputOutlined.tsx b/node_modules/react-native-paper/src/components/TextInput/TextInputOutlined.tsx
+index bdecd73..52f708a 100644
+--- a/node_modules/react-native-paper/src/components/TextInput/TextInputOutlined.tsx
++++ b/node_modules/react-native-paper/src/components/TextInput/TextInputOutlined.tsx
+@@ -1,46 +1,46 @@
+ import * as React from 'react';
+ import {
+-  Animated,
+-  View,
+-  TextInput as NativeTextInput,
+-  StyleSheet,
+-  I18nManager,
+-  Platform,
+-  TextStyle,
+-  ColorValue,
+-  LayoutChangeEvent,
++    Animated,
++    ColorValue,
++    I18nManager,
++    LayoutChangeEvent,
++    TextInput as NativeTextInput,
++    Platform,
++    StyleSheet,
++    TextStyle,
++    View,
+ } from 'react-native';
+ 
+ import { Outline } from './Addons/Outline';
+-import { AdornmentType, AdornmentSide } from './Adornment/enums';
++import { AdornmentSide, AdornmentType } from './Adornment/enums';
+ import TextInputAdornment, {
+-  getAdornmentConfig,
+-  getAdornmentStyleAdjustmentForNativeInput,
+-  TextInputAdornmentProps,
++    getAdornmentConfig,
++    getAdornmentStyleAdjustmentForNativeInput,
++    TextInputAdornmentProps,
+ } from './Adornment/TextInputAdornment';
+ import {
+-  MAXIMIZED_LABEL_FONT_SIZE,
+-  MINIMIZED_LABEL_FONT_SIZE,
+-  LABEL_WIGGLE_X_OFFSET,
+-  ADORNMENT_SIZE,
+-  OUTLINE_MINIMIZED_LABEL_Y_OFFSET,
+-  LABEL_PADDING_TOP,
+-  MIN_DENSE_HEIGHT_OUTLINED,
+-  LABEL_PADDING_TOP_DENSE,
++    ADORNMENT_SIZE,
++    LABEL_PADDING_TOP,
++    LABEL_PADDING_TOP_DENSE,
++    LABEL_WIGGLE_X_OFFSET,
++    MAXIMIZED_LABEL_FONT_SIZE,
++    MIN_DENSE_HEIGHT_OUTLINED,
++    MINIMIZED_LABEL_FONT_SIZE,
++    OUTLINE_MINIMIZED_LABEL_Y_OFFSET,
+ } from './constants';
+ import {
+-  calculateLabelTopPosition,
+-  calculateInputHeight,
+-  calculatePadding,
+-  adjustPaddingOut,
+-  Padding,
+-  calculateOutlinedIconAndAffixTopPosition,
+-  getOutlinedInputColors,
+-  getConstants,
++    adjustPaddingOut,
++    calculateInputHeight,
++    calculateLabelTopPosition,
++    calculateOutlinedIconAndAffixTopPosition,
++    calculatePadding,
++    getConstants,
++    getOutlinedInputColors,
++    Padding,
+ } from './helpers';
+ import InputLabel from './Label/InputLabel';
+ import LabelBackground from './Label/LabelBackground';
+-import type { RenderProps, ChildTextInputProps } from './types';
++import type { ChildTextInputProps, RenderProps } from './types';
+ 
+ const TextInputOutlined = ({
+   disabled = false,
+@@ -410,7 +410,7 @@ const TextInputOutlined = ({
+                 MIN_WIDTH
+               ),
+             },
+-            Platform.OS === 'web' && { outline: 'none' },
++            Platform.OS === 'web' ? { outline: 'none' } : undefined,
+             adornmentStyleAdjustmentForNativeInput,
+             contentStyle,
+           ],
