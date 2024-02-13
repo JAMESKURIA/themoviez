@@ -1,5 +1,4 @@
 import { FlashList } from '@shopify/flash-list'
-import { Asset } from 'expo-asset'
 import { useColorScheme } from 'nativewind'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -85,14 +84,15 @@ export function MovieCard({
     imageClassName?: string
     fullImage?: boolean
 }) {
-    const uri = Boolean(fullImage)
-        ? Asset.fromModule(movie.image.full)?.uri
-        : Asset.fromModule(movie.image.thumbnail)?.uri
+    // const uri = Boolean(fullImage)
+    //     ? Asset.fromModule(movie.image.full)?.uri
+    //     : Asset.fromModule(movie.image.thumbnail)?.uri
+    const source = Boolean(fullImage) ? movie.image.full : movie.image.thumbnail
     return (
         <View className="justify-center w-full gap-2 ">
             <Image
-                source={{ uri }}
-                className={`${!showTitle ? 'h-[85%]' : 'h-full'} rounded-lg ${imageClassName}`}
+                source={source}
+                className={`${!showTitle ? 'h-[85%]' : 'h-full'} rounded-lg w-full ${imageClassName}`}
                 resizeMethod="resize"
                 resizeMode="cover"
             />
