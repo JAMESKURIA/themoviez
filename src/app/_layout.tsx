@@ -7,10 +7,10 @@ import { Animated, StyleSheet, View } from 'react-native'
 
 import { LOG } from '@/lib/logger'
 import Providers from '@/providers'
-import '@/styles/global.css'
-import { cssInterop } from 'nativewind'
 
-const log = LOG.extend('AppLayout')
+import '@/styles/global.css'
+
+const logger = LOG.extend('AppLayout')
 
 export const unstable_settings = {
     initialRouteName: 'index',
@@ -21,8 +21,6 @@ SplashScreen.preventAutoHideAsync().catch(() => {
 })
 
 export default function App() {
-    cssInterop(Stack, {})
-
     return (
         <AnimatedAppLoader image={{ uri: `../../${Constants.expoConfig?.splash?.image}` }}>
             <Providers>
@@ -45,7 +43,7 @@ function AnimatedAppLoader({ children, image }) {
             try {
                 await Asset.fromURI(image.uri)?.downloadAsync()
             } catch (error) {
-                log.error(error)
+                logger.error(error)
             }
             setSplashReady(true)
         }
@@ -82,7 +80,7 @@ function AnimatedSplashScreen({ children, image }) {
             await Promise.all([])
         } catch (e) {
             // handle errors
-            log.error(e)
+            logger.error(e)
         } finally {
             setAppReady(true)
         }
@@ -97,7 +95,7 @@ function AnimatedSplashScreen({ children, image }) {
                     style={[
                         StyleSheet.absoluteFill,
                         {
-                            backgroundColor: Constants.expoConfig?.splash?.backgroundColor,
+                            backgroundColor: `../../${Constants.expoConfig?.splash?.backgroundColor}`,
                             opacity: animation,
                         },
                     ]}>

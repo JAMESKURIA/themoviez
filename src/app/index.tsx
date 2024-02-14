@@ -7,7 +7,9 @@ import { Dimensions, Image, Pressable, ScrollView, Text, View } from 'react-nati
 import { LOG } from '@/lib/logger'
 import { moviesList } from '@/modules/misc/data/movies'
 import { UISearchBar } from '@/modules/misc/ui'
+import { appColors } from '@/utils/color-theme'
 import { router } from 'expo-router'
+import Icon, { IconType } from 'react-native-dynamic-vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 type Movie = (typeof moviesList)[number]
@@ -24,7 +26,17 @@ export default function Page() {
         <ScrollView className="flex-1 ">
             <SafeAreaView className="flex-1 min-h-screen bg-primary-light ">
                 <View className="px-5 pt-10 pb-5">
-                    <Text className="text-3xl  text-accent-light pb-5">Search for content</Text>
+                    <View className="flex-row items-center w-full justify-between  pb-5">
+                        <Text className="text-3xl  text-accent-light">Search for content</Text>
+                        <Icon
+                            name={colorScheme === 'dark' ? 'sun' : 'moon'}
+                            type={IconType.Feather}
+                            size={20}
+                            color={appColors[colorScheme]['--color-accent-default']}
+                            onPress={() => toggleColorScheme()}
+                            className="mr-3"
+                        />
+                    </View>
                     <UISearchBar control={control} name="search" value="" />
                 </View>
                 <Text className="text-2xl text-accent-light px-5">Categories</Text>

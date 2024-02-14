@@ -1,10 +1,9 @@
-// src/utils/color-theme.ts
 import { vars } from 'nativewind'
 
-export const themes = {
-    light: vars({
+export const appColors = {
+    light: {
         '--color-primary-default': '#FCFDFD',
-        '--color-primary-light': '#ffffff',
+        '--color-primary-light': '#E6ECEC',
         '--color-secondary-default': '#9b6cca',
         '--color-secondary-light': '#dfbeff',
         '--color-tertiary-default': '#ff88bd',
@@ -16,8 +15,8 @@ export const themes = {
         '--color-dark-default': '#1f355b',
         '--color-light-default': '#FCFDFD',
         '--color-overlay': 'rgba(0, 0, 0, .05)',
-    }),
-    dark: vars({
+    },
+    dark: {
         '--color-primary-default': '#0e0e11',
         '--color-primary-light': '#1a1b1d',
         '--color-secondary-default': '#9b6cca',
@@ -31,5 +30,10 @@ export const themes = {
         '--color-dark-default': '#1f355b',
         '--color-light-default': '#1E1E1E',
         '--color-overlay': 'rgba(255, 255, 255, .05)',
-    }),
+    },
+}
+
+export const themes = {
+    light: vars({ ...appColors.light }),
+    dark: vars({ ...appColors.dark }),
 }

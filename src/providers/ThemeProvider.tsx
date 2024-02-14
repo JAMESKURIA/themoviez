@@ -21,9 +21,11 @@ const logger = LOG.extend('ThemeProvider')
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     const { colorScheme, setColorScheme } = useColorScheme()
-    React.useEffect(() => {
-        setColorScheme('system')
-    }, [])
+
+    // React.useState(() => {
+    //     setColorScheme('system')
+    // }, [])
+
     return (
         <ThemeContext.Provider value={{ theme: colorScheme }}>
             <SafeAreaProvider>
